@@ -6,12 +6,12 @@ import urequests
 from machine import Pin
 import uasyncio as asyncio
 import rp2
-rp2.country('GR')
+rp2.country('GR') # Set your country if you can't connect to your WiFi
 led = Pin(15, Pin.OUT)
 onboard = Pin("LED", Pin.OUT, value=0)
 
-ssid = 'WIFI'
-password = 'password'
+ssid = 'WIFI' # Put your WifI SSID
+password = 'password' # Put your WiFi password
 
 html = """<!DOCTYPE html>
  <html>
@@ -74,7 +74,7 @@ async def serve_client(reader, writer):
     wake_up = request.find('/wakeup')
     if wake_up == 6:
         print("wake up")
-        s.sendto(make_packet('XX:XX:XX:XX:XX:XX'), ('192.168.1.255', 9)) 
+        s.sendto(make_packet('XX:XX:XX:XX:XX:XX'), ('192.168.1.255', 9)) # Put your targer computer MAC address 
         
     writer.write('HTTP/1.0 200 OK\r\nContent-type: text/html\r\n\r\n')
     writer.write(html)
